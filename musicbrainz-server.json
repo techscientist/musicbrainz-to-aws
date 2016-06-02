@@ -1,0 +1,8 @@
+[{
+    "Description": "MusicBrainz Image",
+    "Format": "ova",
+    "UserBucket": {
+        "S3Bucket": "musicbrainz-bucket",
+        "S3Key": "musicbrainz-server.ova"
+    }
+}]
