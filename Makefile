@@ -1,4 +1,4 @@
-CREDENTIALS= -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+CREDENTIALS= -e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) -e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY)
 MUSICBRAINZ_BUCKET=musicbrainz-bucket
 MUSICBRAINZ_FILE=musicbrainz-server.ova
 IMAGE_DESCRIPTION="MusicBrainz Image"
@@ -18,3 +18,6 @@ create-vmimport:
 
 start-import-image:
 	docker run --rm -v `pwd`:/src $(CREDENTIALS) awscli aws ec2 import-image --platform Linux --architecture x86_64 --description $(IMAGE_DESCRIPTION) --disk-containers file:///src/musicbrainz-server.json --region us-east-1
+
+check-progress:
+	docker run --rm -v `pwd`:/src $(CREDENTIALS) awscli aws ec2 describe-import-image-tasks --region us-east-1
